@@ -1,0 +1,25 @@
+# 1
+from random import randint
+num = ''
+repetition = False
+for i in range(0, 4):
+    if not repetition:
+        while True:
+            n = str(randint(0,9))
+            if not n in num:
+                break
+    else:
+        n = str(randint(0,9))
+    num += n     
+while True:
+    guess = input('введите число: ')
+    bulls = 0
+    cows = 0
+    for j in range (4):
+        if chislo[i] == guess[j]:
+            bulls += 1
+        elif guess[i] in num:
+            cows += 1
+    print(f'{bulls} быков и {cows} коров')
+    if bulls == 4:
+        print('число угадано')
