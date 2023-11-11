@@ -20,7 +20,7 @@ def print_maps():
 def input_move(): 
     error = True
     while error: 
-        move = input('игрок ' + name_player() + ' введите ваш ход') 
+        move = input(f'игрок: {name_player()} введите ваш ход:') 
         error = False 
         if len(move) != 1 or move not in '12345678abcdefgh': # проверяем введен ли номер столбца или строки
             error = True
@@ -63,4 +63,4 @@ while win == False: # вызывает функции пока кто-нибуд
     print_maps()
     input_move()
     win = check_win() 
-print('победил ' + name_player()) 
+print(f'победил {name_player()}') 
