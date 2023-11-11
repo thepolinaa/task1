@@ -87,7 +87,7 @@ while game_over == False:
     # если компьютер нашел куда сделать ход, то играем. если нет, то ничья.
     if step != '':
         step_maps(step,symbol) # делаем ход в указанную ячейку
-        win = get_result() # определим победителя
+        win = get_result() 
         if win != '':
             game_over = True
         else:
@@ -98,4 +98,4 @@ while game_over == False:
         win = 'дружба'
     human = not(human)        
 print_maps()
-print('победил', win)   
+print(f'победил {win}') 
