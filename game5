@@ -2,7 +2,6 @@
 gamers = [1, 2, 3]
 table = [[0 for x in range(5)] for y in range(4)]
 scopes = {}
-
 def print_table():
     # функция печати таблицы при каждом ходе
     s_y = '-' * 4 * 3
@@ -14,18 +13,15 @@ def print_table():
         s_x += '|'
         print(s_x)
     print(s_y)
-
 def print_scope():
     # функция печати результатов при каждом ходе
     for gamer in gamers:
         scopes[gamer] = get_scope(gamer)
-        print(f'У игрока: {gamer} штрафных очков: {scopes[gamer]}')
-
+        print(f'у игрока: {gamer} штрафных очков: {scopes[gamer]}')
 def print_summary():
     for gamer in gamers:
-        print(f'Итоги игрок: {gamer}, имеет: {scopes[gamer]} штрафных очков')
+        print(f'итоги игрок: {gamer}, имеет: {scopes[gamer]} штрафных очков')
     # надо добавить победителя и проигравшего
-
 def get_scope(gamer):
     # функция расчета очков выполняется при каждом ходе
     global table
