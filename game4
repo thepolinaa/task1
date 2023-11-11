@@ -1,0 +1,49 @@
+# 4
+def display_board(board):
+    for row in board:
+        print(" ".join(row))
+def check_can_cross_out(board, coordinates1, coordinates2):
+    value1 = board[coordinates1[0]][coordinates1[1]]
+    value2 = board[coordinates2[0]][coordinates2[1]]
+    if value1 == ' ' or value2 == ' ':
+        return False  # пустые клетки не могут быть вычеркнуты
+    if value1.isdigit() and value2.isdigit() and (int(value1) + int(value2) == 10):
+        return True  # цифры, которые дают в сумме 10, могут быть вычеркнуты
+    return False  
+def needs_new_lines(board):
+    for row in board:
+        if ' ' in row:
+            return False  # на текущих строках ещё остались пустые клетки
+    return True  # все клетки заполнены, нужно выписать новые строки
+def play_game():
+    board = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
+    game_over = False
+    while not game_over:
+        display_board(board)
+        coordinates = input('введите координаты клеток строка столбец: ').split()
+        coordinates = list(map(int, coordinates))
+        valid_input = all(0 < coord <= 3 for coord in coordinates)
+        if not valid_input:
+            print('введите координаты в диапазоне от 1 до 3')
+            continue
+        x1, y1, x2, y2 = coordinates
+        x1 -= 1  # переходим к индексам массива, отсчет начинается с 0
+        y1 -= 1
+        x2 -= 1
+        y2 -= 1
+        if (x1 == x2 and abs(y1 - y2) == 1) or (y1 == y2 and abs(x1 - x2) == 1):
+            if check_can_cross_out(board, (x1, y1), (x2, y2)):
+                board[x1][y1] = ' '
+                board[x2][y2] = ' '
+            else:
+                print('выбранные числа не могут быть вычеркнуты по правилам игры')
+        else:
+            print('выбранные четыре числа не лежат в ряд или столбец')
+        if all([' ' in row for row in board]):
+            game_over = True
+            print('игра окончена, все цифры вычеркнуты')
+        elif needs_new_lines(board):
+            board.append([str(i) for i in range(10, 20)])
+            game_over = True
+            print('игра окончена, новые строки выписаны')
+play_game()
